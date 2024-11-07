@@ -1,21 +1,158 @@
-:root {
-  background-color: #181818;
-  color: rgba(255, 255, 255, 0.87);
-  color-scheme: light dark;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-synthesis: none;
-  font-weight: 400;
-  line-height: 1.5;
-  text-rendering: optimizeLegibility;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+/* Stili di base */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0c0c0d; /* Sfondo scuro */
+  color: #00ff2a; /* Testo verde neon */
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    background-color: #f8f8f8;
-    color: #181818;
+/* Contenitore della homepage */
+.home-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px; /* Compensa per la navbar fissa */
+}
+
+/* Video in background */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.5; /* Semitrasparente */
+}
+
+/* Contenuto sopra il video */
+.content {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.6); /* Sfondo semitrasparente */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  color: #ffdd00; /* Testo giallo neon */
+}
+
+/* Navbar */
+.navbar-cyber {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  box-shadow: 0 0 10px #00ff2a;
+  z-index: 3;
+  margin-bottom: 100px;
+}
+
+.nav-link {
+  color: #00ff2a;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ccff00;
+}
+
+/* Testo con effetto Glow */
+.glow-text {
+  color: #00ff2a;
+  text-shadow: 0 0 5px #00ff2a, 0 0 10px #00ff2a, 0 0 20px #ff007f;
+}
+
+/* Pulsanti */
+.btn-cyber, .btn-purchase {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cyber {
+  color: #00ff2a;
+  background-color: #000000;
+  box-shadow: 0 0 10px #ccff0099, 0 0 20px rgba(204, 255, 0, 0.4);
+}
+
+.btn-cyber:hover {
+  background-color: #00ff2a;
+  color:#000000;
+  box-shadow: 0 0 15px rgba(255, 221, 0, 0.8), 0 0 25px rgba(255, 221, 0, 0.6);
+}
+
+.btn-purchase {
+  color: #181818;
+  background-color: #ccff00;
+  box-shadow: 0 0 10px rgba(204, 255, 0, 0.6), 0 0 20px rgba(204, 255, 0, 0.4);
+}
+
+.btn-purchase:hover {
+  background-color: #ffdd00;
+  box-shadow: 0 0 15px rgba(255, 221, 0, 0.8), 0 0 25px rgba(255, 221, 0, 0.6);
+}
+
+/* Layout Griglia dei Prodotti */
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Migliora la responsività */
+  gap: 20px;
+  padding: 20px;
+  margin-top: 100px;
+  grid-template-columns: repeat(3, 1fr); /* Tre colonne */
+  justify-content: center;
   }
+
+/* Stili del modulo di contatto */
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
 }
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-label {
+  color: #ffdd00;
+  font-weight: bold;
+  margin-bottom: 5px;
+  
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 10px;
+  background-color: #181818;
+  color: #ffdd00;
+  border: 2px solid #ffdd00;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: #ccff00;
+}
+
