@@ -8,14 +8,17 @@ body {
   text-align: center;
 }
 
+
 /* Contenitore della homepage */
 .home-container {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding-top: 80px; /* Compensa per la navbar fissa */
+  overflow: hidden;
+  height: 100%;
 }
 
 /* Video in background */
@@ -36,7 +39,8 @@ body {
   background-color: rgba(0, 0, 0, 0.6); /* Sfondo semitrasparente */
   padding: 20px;
   border-radius: 10px;
-  max-width: 800px;
+  max-width: 1200px;
+  margin-top: 200px;
   color: #ffdd00; /* Testo giallo neon */
 }
 

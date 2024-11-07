@@ -1,38 +1,55 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useAccount, useConnect, useDisconnect, Connector } from 'wagmi';
 import HomePage from './HomePage';
 import ContactPage from './ContactPage';
 import ShopPage from './Products';
-import { Web3Provider } from '@ethersproject/providers';
 import SuccessPage from './SuccessPage';
+import { Web3Provider } from '@ethersproject/providers';
+import { formatEther } from '@ethersproject/units';
 
 function App() {
   const { address, isConnected } = useAccount();
   const { connectors, connect, error } = useConnect();
   const { disconnect } = useDisconnect();
-  const [isConnecting, setIsConnecting] = useState(false); // Nuova variabile di stato
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [balance, setBalance] = useState<string | null>(null);
 
   const handleConnect = async (connector: Connector) => {
-    // Evita di fare una nuova richiesta se è già in corso
     if (isConnecting) return;
 
     try {
-      setIsConnecting(true); // Imposta lo stato di connessione in corso
+      setIsConnecting(true);
       if (!isConnected) {
         await connect({ connector });
         const provider = new Web3Provider(window.ethereum);
         await provider.send("eth_requestAccounts", []);
+        
+        const signer = provider.getSigner();
+        const balanceInWei = await signer.getBalance();
+        setBalance(formatEther(balanceInWei));
       } else {
         alert('You are already connected');
       }
     } catch (err) {
-      console.error("Connessione fallita:", err);
-      alert('Connessione fallita. Verifica il tuo wallet e riprova.');
+      console.error("Connection Failed:", err);
+      alert('Connection Failed. Verify your wallet and retry.');
     } finally {
-      setIsConnecting(false); // Resetta lo stato di connessione
+      setIsConnecting(false);
     }
   };
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      if (isConnected) {
+        const provider = new Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const balanceInWei = await signer.getBalance();
+        setBalance(formatEther(balanceInWei));
+      }
+    };
+    fetchBalance();
+  }, [isConnected]);
 
   return (
     <Router>
@@ -41,6 +58,12 @@ function App() {
         <Link to="/shop" className="nav-link">Catalog</Link>
         <Link to="/wallet-connect" className="nav-link">Connect Wallet</Link>
         <Link to="/contact" className="nav-link">Contacts</Link>
+        
+        {isConnected && balance && (
+          <span style={{ fontWeight:'bold', position: 'absolute', right: '50px', color: '#00ff2a' }}>
+            Your Balance: {Number(balance).toFixed(5)} ETH
+          </span>
+        )}
       </nav>
 
       <Routes>
@@ -54,9 +77,13 @@ function App() {
               <div style={{ marginBottom: '20px' }}>
                 <p>Status: Connected</p>
                 <p>Address: {address}</p>
+                <p>Balance: {Number(balance).toFixed(5)} ETH</p>
                 <button
                   type="button"
-                  onClick={() => disconnect()}
+                  onClick={() => {
+                    disconnect();
+                    setBalance(null);
+                  }}
                   className="btn-purchase"
                   style={{
                     padding: '10px 20px',
@@ -71,7 +98,6 @@ function App() {
               <p>Not Connected</p>
             )}
 
-            {/* Sezione "Connect" visibile solo se non connesso */}
             {!isConnected && (
               <>
                 <h2 className="glow-text" style={{ fontSize: '2rem', marginBottom: '15px' }}>Connect</h2>
