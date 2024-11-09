@@ -7,7 +7,7 @@ const products = [
     name: 'Cyber Jacket',
     description: 'A Cyber Jacket to keep you warm in the matrix',
     price: 0.0001,
-    imageUrl: 'https://bafybeigjwd5zlg4cc4algzjqxtykodnschummb3yxci4hhouipm57lx2km.ipfs.dweb.link?filename=cyberjacket.jpg',
+    imageUrl: 'https://bafybeigxqrvgfivyz3mi3teyqqn2v7o3izevekonoczbaopjtxlonkvho4.ipfs.dweb.link?filename=cyberjacket.jpg',
   },
   {
     id: 2,

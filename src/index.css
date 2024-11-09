@@ -8,7 +8,6 @@ body {
   text-align: center;
 }
 
-
 /* Contenitore della homepage */
 .home-container {
   position: relative;
@@ -119,7 +118,7 @@ body {
   margin-top: 100px;
   grid-template-columns: repeat(3, 1fr); /* Tre colonne */
   justify-content: center;
-  }
+}
 
 /* Stili del modulo di contatto */
 .contact-form {
@@ -128,7 +127,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
-
 }
 
 .form-group {
@@ -141,7 +139,6 @@ body {
   color: #ffdd00;
   font-weight: bold;
   margin-bottom: 5px;
-  
 }
 
 .form-input, .form-textarea {
@@ -160,3 +157,32 @@ body {
   border-color: #ccff00;
 }
 
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  /* Layout a colonna singola per la griglia */
+  .products-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    margin-top: 50px;
+  }
+
+  /* Riduzione dimensioni font e padding */
+  .btn-cyber, .btn-purchase {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .navbar-cyber {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .content {
+    padding: 15px;
+    margin-top: 100px;
+  }
+
+  .glow-text {
+    font-size: 2rem;
+  }
+}
