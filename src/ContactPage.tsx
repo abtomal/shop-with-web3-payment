@@ -6,7 +6,6 @@ const ContactPage: React.FC = () => {
     alert('Success');
   };
 
-  // Stili base per i campi del form
   const inputStyle = {
     alignSelf: 'center',
     width: '90%',
@@ -20,11 +19,10 @@ const ContactPage: React.FC = () => {
     transition: 'border-color 0.3s',
   };
 
-  // Stili ulteriormente ridotti per dispositivi mobili
   const mobileInputStyle = {
     ...inputStyle,
-    padding: '6px',       // Riduci padding per dispositivi mobili
-    fontSize: '0.75rem',  // Riduci ulteriormente fontSize
+    padding: '6px',       
+    fontSize: '0.75rem',  
   };
 
   return (

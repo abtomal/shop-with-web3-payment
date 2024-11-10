@@ -1,26 +1,26 @@
-/* Stili di base */
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #0c0c0d; /* Sfondo scuro */
-  color: #00ff2a; /* Testo verde neon */
+  background-color: #0c0c0d; 
+  color: #00ff2a;
   font-family: 'Orbitron', sans-serif;
   text-align: center;
 }
 
-/* Contenitore della homepage */
+/*homepage */
 .home-container {
   position: relative;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 80px; /* Compensa per la navbar fissa */
+  padding-top: 80px; 
   overflow: hidden;
   height: 100%;
 }
 
-/* Video in background */
+/* Video*/
 .background-video {
   position: fixed;
   top: 0;
@@ -29,18 +29,18 @@ body {
   height: 100vh;
   object-fit: cover;
   z-index: -1;
-  opacity: 0.5; /* Semitrasparente */
+  opacity: 0.5;
 }
 
-/* Contenuto sopra il video */
+/*Overlay Video*/
 .content {
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.6); /* Sfondo semitrasparente */
+  background-color: rgba(0, 0, 0, 0.6); 
   padding: 20px;
   border-radius: 10px;
   max-width: 1200px;
   margin-top: 200px;
-  color: #ffdd00; /* Testo giallo neon */
+  color: #ffdd00; 
 }
 
 /* Navbar */
@@ -69,13 +69,13 @@ body {
   color: #ccff00;
 }
 
-/* Testo con effetto Glow */
+/* Testo Glow */
 .glow-text {
   color: #00ff2a;
   text-shadow: 0 0 5px #00ff2a, 0 0 10px #00ff2a, 0 0 20px #ff007f;
 }
 
-/* Pulsanti */
+
 .btn-cyber, .btn-purchase {
   padding: 10px 20px;
   font-size: 1rem;
@@ -109,18 +109,18 @@ body {
   box-shadow: 0 0 15px rgba(255, 221, 0, 0.8), 0 0 25px rgba(255, 221, 0, 0.6);
 }
 
-/* Layout Griglia dei Prodotti */
+/* Griglia Prodotti*/
 .products-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Migliora la responsività */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
   gap: 20px;
   padding: 20px;
   margin-top: 100px;
-  grid-template-columns: repeat(3, 1fr); /* Tre colonne */
+  grid-template-columns: repeat(3, 1fr); 
   justify-content: center;
 }
 
-/* Stili del modulo di contatto */
+/* Form */
 .contact-form {
   max-width: 500px;
   margin: 0 auto;
@@ -157,16 +157,14 @@ body {
   border-color: #ccff00;
 }
 
-/* Mobile view adjustments */
+/* Mobile */
 @media (max-width: 768px) {
-  /* Layout a colonna singola per la griglia */
   .products-container {
     grid-template-columns: 1fr;
     padding: 10px;
     margin-top: 50px;
   }
 
-  /* Riduzione dimensioni font e padding */
   .btn-cyber, .btn-purchase {
     padding: 8px 16px;
     font-size: 0.9rem;

@@ -16,7 +16,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { sendTransaction, data } = useSendTransaction(); // `data` conterrà l'hash della transazione se inviata correttamente
+  const { sendTransaction, data } = useSendTransaction(); 
   const { isConnected } = useAccount();
   const [isProcessing, setIsProcessing] = useState(false);
   const navigate = useNavigate();
@@ -30,8 +30,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     try {
       setIsProcessing(true);
       await sendTransaction({
-        to: '0xB77D31D715D9aA1536fDcc32A1BBc6Ff25A06309', // Indirizzo del wallet del proprietario
-        value: BigInt(product.price * 1e18), // Converti il prezzo in wei
+        to: '0xB77D31D715D9aA1536fDcc32A1BBc6Ff25A06309', 
+        value: BigInt(product.price * 1e18), 
       });
     } catch (error) {
       console.error('Transaction Error:', error);
@@ -45,7 +45,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const waitForTransaction = async () => {
       if (data) {
         const provider = new Web3Provider(window.ethereum);
-        const receipt = await provider.waitForTransaction(data); // Attende la conferma della transazione
+        const receipt = await provider.waitForTransaction(data); 
         if (receipt && receipt.status === 1) {
           navigate('/success');
         } else {
