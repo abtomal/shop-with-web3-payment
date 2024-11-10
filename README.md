@@ -36,22 +36,21 @@ Reti di Test: Connettiti a una rete di test (Rinkeby o Ropsten) tramite MetaMask
 ## Passaggi
 ### Clona il Repository
 
-''' bash
+```bash
 git clone https://github.com/abtomal/Progetto-TypeScript-React-e-Web3-di-Alessandro-Ponton.git
 cd neoptic-clothing
-''' 
+```
 
 ### Installa le Dipendenze
-
-''' bash
+``` bash
 npm install
-'''
+```
 
 ### Avvia il Server di Sviluppo
 
-''' bash
+``` bash
 npm run dev
-'''
+```
 
 ### Apri l'Applicazione
 
