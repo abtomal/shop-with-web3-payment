@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSendTransaction, useAccount } from 'wagmi';
 import { useNavigate } from 'react-router-dom';
 import { Web3Provider } from '@ethersproject/providers';
+import './ProductCard.css';
 
 interface Product {
   id: number;
@@ -58,82 +59,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   }, [data, navigate]);
 
   return (
-    <div className="product-card" style={styles.card}>
-      <img 
-        src={product.imageUrl} 
-        alt={product.name} 
-        style={styles.image}
-      />
-      <h3 className="product-name" style={styles.name}>
-        {product.name}
-      </h3>
-      <p className="product-description" style={styles.description}>
-        {product.description}
-      </p>
-      <p className="product-price" style={styles.price}>
-        {product.price} ETH
-      </p>
-      <button 
-        onClick={handlePurchase} 
-        className="btn-purchase" 
-        style={{
-          ...styles.button,
-          backgroundColor: isProcessing ? '#555' : '#ccff00',
-          cursor: isProcessing ? 'not-allowed' : 'pointer',
-        }}
+    <div className="product-card">
+      <img src={product.imageUrl} alt={product.name} />
+      <h3>{product.name}</h3>
+      <p>{product.description}</p>
+      <p className="product-price">{product.price} ETH</p>
+      <button
+        onClick={handlePurchase}
+        className="btn-purchase"
         disabled={isProcessing}
       >
         {isProcessing ? 'Processing...' : 'Buy'}
       </button>
     </div>
   );
-};
-
-const styles = {
-  card: {
-    maxWidth: '250px',
-    padding: '10px',
-    margin: '10px auto',
-    textAlign: 'center' as const,
-    borderRadius: '8px',
-    backgroundColor: '#1c1c1e',
-    boxShadow: '0 0 10px #00ff2a, 0 0 20px #00ff2a, 0 0 30px #00ff2a',
-  },
-  image: {
-    width: '100%',
-    height: '200px',
-    objectFit: 'cover' as 'cover',
-    borderRadius: '8px',
-  },
-  name: {
-    fontSize: '1rem',
-    margin: '8px 0',
-    color: '#ffffff',
-  },
-  description: {
-    fontSize: '0.9rem',
-    color: '#cccccc',
-    margin: '5px 0',
-  },
-  price: {
-    fontSize: '1rem',
-    fontWeight: 'bold',
-    color: '#00ff2a',
-    margin: '8px 0',
-  },
-  button: {
-    padding: '8px 16px',
-    fontSize: '1rem',
-    fontWeight: 'bold',
-    color: '#000000',
-    backgroundColor: '#ccff00',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    marginTop: '10px',
-    transition: 'all 0.3s ease',
-    boxShadow: '0 0 10px rgba(255, 221, 0, 0.8)',
-  },
 };
 
 export default ProductCard;

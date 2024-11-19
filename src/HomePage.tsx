@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './HomePage.css';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -22,9 +23,10 @@ const HomePage: React.FC = () => {
       </video>
 
       <div className="content">
-        <h1 className="glow-text" style={{ fontSize: '3rem', marginBottom: '20px' }}>NEOPTIC CLOTHING</h1>
-        <p style={{ color: '#ccff00', fontSize: '1.2rem', maxWidth: '600px', margin: '20px auto' }}>
-          Dive into the future with our exclusive handmade cyberpunk collections. <br></br> From neon glasses to gadgets, we have everything to keep you glowing.
+        <h1 className="glow-text">NEOPTIC CLOTHING</h1>
+        <p>
+          Dive into the future with our exclusive handmade cyberpunk collections. <br />
+          From neon glasses to gadgets, we have everything to keep you glowing.
         </p>
 
         <div className="button-group">

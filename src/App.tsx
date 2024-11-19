@@ -1,119 +1,77 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { useAccount, useConnect, useDisconnect, Connector } from 'wagmi';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import useWallet from './hooks/useWallet';
 import HomePage from './HomePage';
 import ContactPage from './ContactPage';
 import ShopPage from './Products';
 import SuccessPage from './SuccessPage';
-import { Web3Provider } from '@ethersproject/providers';
-import { formatEther } from '@ethersproject/units';
+import { Connector } from '@wagmi/core';
+import './App.css';
+
+// Componente che contiene la navbar e controlla se mostrarla
+const NavBarWrapper = ({ isConnected, balance }: { isConnected: boolean, balance: string | null | undefined }) => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  if (isHomePage) return null;
+
+  return (
+    <nav className="navbar-cyber">
+      <div className="nav-links">
+        <Link to="/" className="nav-link">Home</Link>
+        <Link to="/shop" className="nav-link">Catalog</Link>
+        <Link to="/contact" className="nav-link">Contacts</Link>
+      </div>
+      
+      <div className="wallet-section">
+        {isConnected && balance && (
+          <span className="wallet-balance">
+            {Number(balance).toFixed(5)} ETH
+          </span>
+        )}
+        <Link 
+          to="/wallet-connect" 
+          className="connect-wallet-btn"
+        >
+          {isConnected ? 'My Wallet' : 'Connect Wallet'}
+        </Link>
+      </div>
+    </nav>
+  );
+};
 
 function App() {
-  const { address, isConnected } = useAccount();
-  const { connectors, connect, error } = useConnect();
-  const { disconnect } = useDisconnect();
-  const [isConnecting, setIsConnecting] = useState(false);
-  const [balance, setBalance] = useState<string | null>(null);
-
-  const handleConnect = async (connector: Connector) => {
-    if (isConnecting) return;
-
-    try {
-      setIsConnecting(true);
-      if (!isConnected) {
-        await connect({ connector });
-        const provider = new Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        
-        const signer = provider.getSigner();
-        const balanceInWei = await signer.getBalance();
-        setBalance(formatEther(balanceInWei));
-      } else {
-        alert('You are already connected');
-      }
-    } catch (err) {
-      console.error("Connection Failed:", err);
-      alert('Connection Failed. Verify your wallet and retry.');
-    } finally {
-      setIsConnecting(false);
-    }
-  };
-
-  useEffect(() => {
-    const fetchBalance = async () => {
-      if (isConnected) {
-        const provider = new Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const balanceInWei = await signer.getBalance();
-        setBalance(formatEther(balanceInWei));
-      }
-    };
-    fetchBalance();
-  }, [isConnected]);
+  const { address, isConnected, connectors, connect, disconnect, balance, isConnecting } = useWallet();
 
   return (
     <Router>
-      <nav className="navbar-cyber">
-        <Link to="/" className="nav-link">Home</Link>
-        <Link to="/shop" className="nav-link">Catalog</Link>
-        <Link to="/wallet-connect" className="nav-link">Connect Wallet</Link>
-        <Link to="/contact" className="nav-link">Contacts</Link>
-        
-        {isConnected && balance && (
-          <span style={{ fontWeight:'bold', position: 'absolute', right: '50px', color: '#00ff2a' }}>
-            Your Balance: {Number(balance).toFixed(5)} ETH
-          </span>
-        )}
-      </nav>
-
+      <NavBarWrapper isConnected={isConnected} balance={balance} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/wallet-connect" element={
-          <div className="container" style={{ marginTop: '100px' }}>
-            <h2 className="glow-text" style={{ fontSize: '2rem', marginBottom: '20px' }}>Wallet Account</h2>
+          <div className="container">
+            <h2 className="glow-text">Wallet Account</h2>
             {isConnected ? (
-              <div style={{ marginBottom: '20px' }}>
+              <div>
                 <p>Status: Connected</p>
                 <p>Address: {address}</p>
                 <p>Balance: {Number(balance).toFixed(5)} ETH</p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    disconnect();
-                    setBalance(null);
-                  }}
-                  className="btn-purchase"
-                  style={{
-                    padding: '10px 20px',
-                    fontSize: '1rem',
-                    marginTop: '15px',
-                  }}
-                >
-                  Disconnect
-                </button>
+                <button onClick={() => disconnect()} className="btn-purchase">Disconnect</button>
               </div>
             ) : (
               <p>Not Connected</p>
             )}
-
             {!isConnected && (
               <>
-                <h2 className="glow-text" style={{ fontSize: '2rem', marginBottom: '15px' }}>Connect</h2>
+                <h2 className="glow-text">Connect</h2>
                 <div style={{ display: 'flex', gap: '15px', flexDirection: 'column', alignItems: 'center' }}>
-                  {connectors.map((connector) => (
+                  {connectors.map((connector: Connector) => (
                     <button
                       key={connector.id}
-                      onClick={() => handleConnect(connector)}
-                      type="button"
+                      onClick={() => connect(connector)}
                       className="btn-cyber"
-                      style={{
-                        padding: '10px 20px',
-                        fontSize: '1rem',
-                        cursor: 'pointer',
-                      }}
-                      disabled={isConnecting} 
+                      disabled={isConnecting}
                     >
                       {isConnecting ? 'Connecting...' : connector.name}
                     </button>
@@ -121,7 +79,6 @@ function App() {
                 </div>
               </>
             )}
-            {error && <p style={{ color: 'black', marginTop: '10px' }}>{error.message}</p>}
           </div>
         } />
         <Route path="/contact" element={<ContactPage />} />

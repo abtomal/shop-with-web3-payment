@@ -1,0 +1,35 @@
+.container {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  .glow-text {
+    font-size: 2.5rem;
+    color: #00ff2a;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #00ff2a, 0 0 20px #00ff2a, 0 0 30px #00ff2a;
+  }
+  
+  .message {
+    color: #ccff00;
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 20px auto;
+  }
+  
+  .btn-cyber {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #00ff2a;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-cyber:hover {
+    background-color: #ccff00;
+  }
+  
