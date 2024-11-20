@@ -5,8 +5,8 @@ import './SuccessPage.css';
 const SuccessPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleBackToHome = () => {
-    navigate('/');
+  const handleBackToShop = () => {
+    navigate('/shop');
   };
 
   return (
@@ -15,8 +15,8 @@ const SuccessPage: React.FC = () => {
       <p className="message">
         Night City and the Matrix can't wait to see what you bought!
       </p>
-      <button onClick={handleBackToHome} className="btn-cyber">
-        Return Home
+      <button onClick={handleBackToShop} className="btn-cyber">
+        Back
       </button>
     </div>
   );

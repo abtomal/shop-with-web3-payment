@@ -7,7 +7,6 @@ import SuccessPage from './SuccessPage';
 import { Connector } from '@wagmi/core';
 import './App.css';
 
-// Componente che contiene la navbar e controlla se mostrarla
 const NavBarWrapper = ({ isConnected, balance }: { isConnected: boolean, balance: string | null | undefined }) => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -17,7 +16,7 @@ const NavBarWrapper = ({ isConnected, balance }: { isConnected: boolean, balance
   return (
     <nav className="navbar-cyber">
       <div className="nav-links">
-        <Link to="/" className="nav-link">Home</Link>
+        <Link to="/" className="nav-link">Main</Link>
         <Link to="/shop" className="nav-link">Catalog</Link>
         <Link to="/contact" className="nav-link">Contacts</Link>
       </div>
