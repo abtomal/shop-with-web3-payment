@@ -1,57 +1,70 @@
-# PROGETTO TYPERSCRIPT, REACT E WEB3 DI ALESSANDRO PONTON
 
-### Neoptic Clothing è un sito di eCommerce in stile cyberpunk per abbigliamento e gadget futuristici. Questa dApp supporta la connessione con MetaMask su Ethereum e consente di effettuare pagamenti su reti di test come Rinkeby e Ropsten.
+markdown
+Copia
+Modifica
+# ALESSANDRO PONTON'S TYPESCRIPT, REACT, AND WEB3 PROJECT
 
-## Funzionalità Principali
-Connessione al Wallet: Gli utenti possono collegare il loro wallet con MetaMask, con bilancio ETH visibile nella navbar.
-Acquisto di Prodotti: Cliccando su "Buy" inizia la transazione. Dopo il completamento, l'utente viene reindirizzato alla pagina di successo.
-Interfaccia Cyberpunk: Un design con video di sfondo, effetti neon e font futuristici per una UX immersiva.
+### Neoptic Clothing is a cyberpunk-style eCommerce site for futuristic clothing and gadgets. This dApp supports MetaMask connection on Ethereum and allows payments on test networks such as Rinkeby and Ropsten.
 
-## Tecnologie Utilizzate
+## Main Features
+- **Wallet Connection**: Users can connect their wallet using MetaMask, with their ETH balance displayed in the navbar.
+- **Product Purchase**: Clicking "Buy" initiates the transaction. After completion, the user is redirected to the success page.
+- **Cyberpunk Interface**: A design with background videos, neon effects, and futuristic fonts for an immersive UX.
+
+## Technologies Used
 ### 1. React
-Utilizzo di React per componenti modulari e riutilizzabili, facilitando la gestione dello stato e la manutenibilità del codice.
-### 2. Wagmi e ethers.js
-Wagmi semplifica l'interazione con i wallet Ethereum, mentre ethers.js è utilizzato per connettersi alla blockchain.
-Implementazione: wagmi consente di verificare la connessione, ottenere l'indirizzo del wallet e visualizzare il bilancio di ETH. ethers.js gestisce le transazioni e converte valori in wei.
+Used for modular and reusable components, simplifying state management and code maintainability.
+
+### 2. Wagmi and ethers.js
+- **Wagmi** simplifies wallet interactions on Ethereum, such as checking connections, fetching wallet addresses, and displaying ETH balances.
+- **ethers.js** handles blockchain transactions and converts values to wei.
+
 ### 3. React Router
-Per la navigazione interna tra le pagine.
+For internal navigation between pages.
+
 ### 4. IPFS (InterPlanetary File System)
-Le immagini dei prodotti sono caricate su IPFS, consentendo di accedervi tramite il loro hash unico. Questo elimina la necessità di server centralizzati e garantisce che le immagini siano accessibili in modo permanente e sicuro.
-### 5. Styled Components e Effetti Cyberpunk
-Gli effetti visivi neon e cyberpunk sono essenziali per l'estetica dell'applicazione.
-CSS avanzato e styled components creano effetti neon per pulsanti, testi e sfondi (es. .glow-text, .btn-cyber, .background-video).
-Tentato l'utilizzo di Tailwind ma non funzionava.
+- Product images are uploaded to IPFS, accessible via unique hashes.
+- This eliminates the need for centralized servers and ensures images are permanently and securely available.
+
+### 5. Styled Components and Cyberpunk Effects
+- Neon and cyberpunk visual effects are essential for the application's aesthetic.
+- Advanced CSS and styled components create neon effects for buttons, text, and backgrounds (e.g., `.glow-text`, `.btn-cyber`, `.background-video`).
+- Attempted to use Tailwind but encountered compatibility issues.
+
 ### 6. Video Background
-Scelta: Un video di sfondo aumenta l’immersione, creando un aspetto dinamico e futuristico per la homepage.
-Implementazione: Applicato con CSS per adattarsi a diverse risoluzioni di schermo.
+- **Choice**: A background video enhances immersion, creating a dynamic and futuristic look for the homepage.
+- **Implementation**: Applied with CSS to adapt to different screen resolutions.
+
 ### 7. Responsive Design
-Garantire un'esperienza utente ottimale anche su dispositivi mobili grazie alle media queries.
+Ensures an optimal user experience on mobile devices using media queries.
 
-## Installazione e Avvio del Progetto in Locale
-## Prerequisiti
-Node.js: Verifica di avere Node.js installato.
-MetaMask: Assicurati di avere l'estensione MetaMask installata nel browser.
-Reti di Test: Connettiti a una rete di test (Rinkeby o Ropsten) tramite MetaMask.
+---
 
-## Passaggi
-### Clona il Repository
+## Installation and Local Setup
+### Prerequisites
+- **Node.js**: Ensure Node.js is installed.
+- **MetaMask**: Make sure the MetaMask extension is installed in your browser.
+- **Test Networks**: Connect to a test network (Rinkeby or Ropsten) via MetaMask.
+
+### Steps
+#### Clone the Repository
 
 ```bash
 git clone https://github.com/abtomal/Progetto-TypeScript-React-e-Web3-di-Alessandro-Ponton.git
 cd Progetto-TypeScript-React-e-Web3-di-Alessandro-Ponton
 ```
 
-### Installa le Dipendenze
+### Install dependencies
 ``` bash
 npm install
 ```
 
-### Avvia il Server di Sviluppo
+### Start the Development Server
 
 ``` bash
 npm run dev
 ```
 
-### Apri l'Applicazione
+### Start App
 
-Visita http://localhost:5173 nel browser e collega MetaMask alla rete di test.
+Visit http://localhost:5173 in your browser and connect MetaMask to the test network.
