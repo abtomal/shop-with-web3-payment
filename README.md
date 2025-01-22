@@ -1,7 +1,3 @@
-
-markdown
-Copia
-Modifica
 # ALESSANDRO PONTON'S TYPESCRIPT, REACT, AND WEB3 PROJECT
 
 ### Neoptic Clothing is a cyberpunk-style eCommerce site for futuristic clothing and gadgets. This dApp supports MetaMask connection on Ethereum and allows payments on test networks such as Rinkeby and Ropsten.
